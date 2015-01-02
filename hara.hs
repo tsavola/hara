@@ -53,9 +53,11 @@ traceColumns y x columns
 
 traceDot :: Int -> Int -> Color
 traceDot row column =
-    case traceRay (fromIntegral column / fromIntegral width) (fromIntegral row / fromIntegral height) of
+    case traceRay x y of
       Just _  -> Color '#'
       Nothing -> Color ' '
+    where x = (fromIntegral column - 0.5) / fromIntegral width
+          y = (fromIntegral row - 0.5) / fromIntegral height
 
 traceRay :: Double -> Double -> Maybe Double
 traceRay x y =
